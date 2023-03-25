@@ -96,7 +96,7 @@ class VolatilLoteRepositoryTest {
    /**
     * O método update apaga todos os lotes e adiciona o lote que deveria ser adicionado substituindo outro
     * com o mesmo ID.
-    * O loteExtra2 tem o mesmo ID do lote1 que deveria ser substituido. 
+    * O loteExtra2 tem o mesmo ID do lote que deveria ser substituido. 
     * Deveria existir 2 lotes, mas existe só um. 
     */
    @Test
@@ -165,7 +165,7 @@ class VolatilLoteRepositoryTest {
                .build();
 	   
        Lote loteExtra2 = Lote.builder()
-               .id(2L)
+               .id(3L)
                .numeroDeItens(50)
                .produto(produtoExtra2)
                .build();
@@ -196,7 +196,7 @@ class VolatilLoteRepositoryTest {
        
        
 	   Produto produtoExtra2 = Produto.builder()
-               .id(2L)
+               .id(3L)
                .nome("Produto Extra 2")
                .codigoBarra("9876543212213")
                .fabricante("Fabricante Extra 2")
@@ -204,7 +204,7 @@ class VolatilLoteRepositoryTest {
                .build();
 	   
        Lote loteExtra2 = Lote.builder()
-               .id(2L)
+               .id(3L)
                .numeroDeItens(50)
                .produto(produtoExtra2)
                .build();
@@ -217,7 +217,7 @@ class VolatilLoteRepositoryTest {
    }
    
    /**
-    * O método não faz o esperado pois, ele deleta todos os lotes envés de deletar o lote repassado para o métodp.
+    * O método não faz o esperado pois, ele deleta todos os lotes envés de deletar o lote repassado para o método.
     * Foram adicionados 3 lotes e esperava-se a remoção de um lote especifico mas foram removidos todos os lotes.
     */
    @Test
@@ -247,7 +247,7 @@ class VolatilLoteRepositoryTest {
                .build();
 	   
        Lote loteExtra2 = Lote.builder()
-               .id(2L)
+               .id(3L)
                .numeroDeItens(50)
                .produto(produtoExtra2)
                .build();
@@ -280,7 +280,7 @@ class VolatilLoteRepositoryTest {
        
        
 	   Produto produtoExtra2 = Produto.builder()
-               .id(2L)
+               .id(3L)
                .nome("Produto Extra 2")
                .codigoBarra("9876543212213")
                .fabricante("Fabricante Extra 2")
@@ -288,7 +288,7 @@ class VolatilLoteRepositoryTest {
                .build();
 	   
        Lote loteExtra2 = Lote.builder()
-               .id(2L)
+               .id(3L)
                .numeroDeItens(50)
                .produto(produtoExtra2)
                .build();
@@ -306,14 +306,15 @@ class VolatilLoteRepositoryTest {
    }
    
    /**
-    * O método apresenta acerto mas está errado pois, além de todos os lotes serem removidos, é adicionado o lote repassado
-    * e o lote retornado é o primeiro a ser adicionado na lista envés do ultmo lote adicionado na lista.
-    * Para provar isso verificamos o tamanho da lista de lotes no sistema que deveria ser 2 pois o ID do lote é igual ao
+    * O método apresenta acerto mas está errado pois, além de todos os lotes serem removidos envés de atualiza-los, 
+    * é adicionado o lote repassado e o lote retornado é o primeiro a ser adicionado na lista envés do ultmo lote 
+    * adicionado na lista.
+ 	* Para provar isso verificamos o tamanho da lista de lotes no sistema que deveria ser 2 pois o ID do lote é igual ao
     * do loteExtra2. O retorno foi de 1 lote e não 2 lotes.
     */
    @Test
-   @DisplayName("Verifica se a lista de lotes são iguais aos pedidos para adicionar na lista.")
-   void verificaSeOLoteRetornadoEhOUltimoAdicionado() {
+   @DisplayName("Verifica se a lista de lotes são iguais aos pedidos para atualizar na lista.")
+   void verificaSeOLoteRetornadoEhOUltimoAdicionadoAoAtualzar() {
 	   Produto produtoExtra1 = Produto.builder()
                .id(2L)
                .nome("Produto Extra")
@@ -330,7 +331,7 @@ class VolatilLoteRepositoryTest {
        
        
 	   Produto produtoExtra2 = Produto.builder()
-               .id(2L)
+               .id(3L)
                .nome("Produto Extra 2")
                .codigoBarra("9876543212213")
                .fabricante("Fabricante Extra 2")
@@ -395,7 +396,3 @@ class VolatilLoteRepositoryTest {
        assertEquals(driver.find(loteExtra2.getId()), loteExtra2);
    }
 }
-
-
-
-
